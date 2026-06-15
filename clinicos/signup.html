@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — ClinicOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="auth-page" data-page="signup">
+
+  <!-- Left brand panel -->
+  <div class="auth-brand">
+    <div class="brand-logo">
+      <div class="brand-logo-icon">🏥</div>
+      <div class="brand-logo-text">Clinic<span>OS</span></div>
+    </div>
+    <div class="brand-tagline">Smart clinic management for modern doctors</div>
+    <div class="brand-sub">Register patients, record visits, prescribe medicines, and access complete patient history — all in one place. No paper files.</div>
+    <div class="brand-features">
+      <div class="brand-feature"><div class="brand-feature-dot"></div>Patient registration in seconds</div>
+      <div class="brand-feature"><div class="brand-feature-dot"></div>Complete visit history at a glance</div>
+      <div class="brand-feature"><div class="brand-feature-dot"></div>One-click prescription builder</div>
+      <div class="brand-feature"><div class="brand-feature-dot"></div>Daily & weekly visit analytics</div>
+      <div class="brand-feature"><div class="brand-feature-dot"></div>Your data, only visible to you</div>
+    </div>
+  </div>
+
+  <!-- Right form panel -->
+  <div class="auth-form-panel">
+    <div class="auth-form-wrap">
+      <div class="auth-form-title">Create your account</div>
+      <div class="auth-form-sub">Already have an account? <a href="login.html">Sign in</a></div>
+
+      <form id="signupForm" autocomplete="off">
+
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Dr. Arjun Mehta" autocomplete="off" />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Mobile Number</label>
+          <input type="tel" id="phone" placeholder="10-digit mobile number" maxlength="10" autocomplete="off" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="doctor@hospital.com" autocomplete="off" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-with-toggle">
+            <input type="password" id="password" placeholder="Minimum 6 characters" />
+            <button type="button" class="toggle-pw" id="togglePassword">👁️</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-with-toggle">
+            <input type="password" id="confirmPassword" placeholder="Re-enter password" />
+            <button type="button" class="toggle-pw" id="toggleConfirm">👁️</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Create Account</button>
+
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

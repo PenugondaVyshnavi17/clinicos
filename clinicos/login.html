@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — ClinicOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="auth-page" data-page="login">
+
+  <!-- Left brand panel -->
+  <div class="auth-brand">
+    <div class="brand-logo">
+      <div class="brand-logo-icon">🏥</div>
+      <div class="brand-logo-text">Clinic<span>OS</span></div>
+    </div>
+    <div class="brand-tagline">Welcome back, Doctor</div>
+    <div class="brand-sub">Your patients and their complete visit history are ready for you. Sign in to continue managing your clinic.</div>
+    <div class="brand-features">
+      <div class="brand-feature"><div class="brand-feature-dot"></div>Your patients, only visible to you</div>
+      <div class="brand-feature"><div class="brand-feature-dot"></div>Full visit history at every appointment</div>
+      <div class="brand-feature"><div class="brand-feature-dot"></div>Instant prescription builder</div>
+      <div class="brand-feature"><div class="brand-feature-dot"></div>No API keys · No billing · 100% local</div>
+    </div>
+  </div>
+
+  <!-- Right form panel -->
+  <div class="auth-form-panel">
+    <div class="auth-form-wrap">
+
+      <!-- LOGIN SECTION -->
+      <div id="loginSection">
+        <div class="auth-form-title">Sign in to ClinicOS</div>
+        <div class="auth-form-sub">Don't have an account? <a href="signup.html">Create one</a></div>
+
+        <div class="login-info-row">
+          <span class="info-icon">ℹ️</span>
+          Your specialisation and hospital name are shown here so patients know who they're seeing.
+        </div>
+
+        <form id="loginForm" autocomplete="off">
+
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="doctor@hospital.com" autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="input-with-toggle">
+              <input type="password" id="loginPassword" placeholder="Your password" />
+              <button type="button" class="toggle-pw" id="toggleLoginPassword">👁️</button>
+            </div>
+          </div>
+
+          <div class="forgot-link">
+            <a href="#" id="forgotPasswordLink">Forgot password?</a>
+          </div>
+
+          <div class="form-group">
+            <label for="specialisation">Specialisation</label>
+            <select id="specialisation">
+              <option value="">Select your specialisation</option>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="hospitalName">Hospital / Clinic Name</label>
+            <input type="text" id="hospitalName" placeholder="e.g. Apollo Hospital, City Clinic" autocomplete="off" />
+          </div>
+
+          <button type="submit" class="btn-primary">Sign In</button>
+
+        </form>
+      </div>
+
+      <!-- FORGOT PASSWORD SECTION -->
+      <div id="forgotSection" class="hidden">
+        <div class="auth-form-title">Reset Password</div>
+        <div class="auth-form-sub">Enter the email linked to your account and set a new password.</div>
+
+        <form id="forgotForm">
+
+          <div class="form-group">
+            <label for="resetEmail">Registered Email</label>
+            <input type="email" id="resetEmail" placeholder="doctor@hospital.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" placeholder="Minimum 6 characters" />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmNewPassword">Confirm New Password</label>
+            <input type="password" id="confirmNewPassword" placeholder="Re-enter new password" />
+          </div>
+
+          <button type="submit" class="btn-primary">Reset Password</button>
+
+          <div style="text-align:center; margin-top:1rem;">
+            <a href="#" id="backToLogin" style="color:var(--jade); font-size:.88rem; font-weight:600; text-decoration:none;">← Back to Sign In</a>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

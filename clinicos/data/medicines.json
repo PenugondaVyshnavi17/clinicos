@@ -1,0 +1,22 @@
+[
+  { "id": 1, "name": "Paracetamol", "dosages": ["500mg", "650mg", "1000mg"], "type": "Analgesic/Antipyretic" },
+  { "id": 2, "name": "Amoxicillin", "dosages": ["250mg", "500mg", "875mg"], "type": "Antibiotic" },
+  { "id": 3, "name": "Azithromycin", "dosages": ["250mg", "500mg"], "type": "Antibiotic" },
+  { "id": 4, "name": "Cetirizine", "dosages": ["5mg", "10mg"], "type": "Antihistamine" },
+  { "id": 5, "name": "Omeprazole", "dosages": ["20mg", "40mg"], "type": "Antacid" },
+  { "id": 6, "name": "Metformin", "dosages": ["500mg", "850mg", "1000mg"], "type": "Antidiabetic" },
+  { "id": 7, "name": "Atorvastatin", "dosages": ["10mg", "20mg", "40mg"], "type": "Cholesterol" },
+  { "id": 8, "name": "Amlodipine", "dosages": ["2.5mg", "5mg", "10mg"], "type": "Antihypertensive" },
+  { "id": 9, "name": "Ibuprofen", "dosages": ["200mg", "400mg", "600mg"], "type": "Anti-inflammatory" },
+  { "id": 10, "name": "Doxycycline", "dosages": ["50mg", "100mg"], "type": "Antibiotic" },
+  { "id": 11, "name": "Losartan", "dosages": ["25mg", "50mg", "100mg"], "type": "Antihypertensive" },
+  { "id": 12, "name": "Salbutamol", "dosages": ["2mg", "4mg"], "type": "Bronchodilator" },
+  { "id": 13, "name": "Montelukast", "dosages": ["4mg", "5mg", "10mg"], "type": "Antiasthmatic" },
+  { "id": 14, "name": "Pantoprazole", "dosages": ["20mg", "40mg"], "type": "Antacid" },
+  { "id": 15, "name": "Clopidogrel", "dosages": ["75mg"], "type": "Antiplatelet" },
+  { "id": 16, "name": "Diclofenac", "dosages": ["25mg", "50mg", "75mg"], "type": "Anti-inflammatory" },
+  { "id": 17, "name": "Metronidazole", "dosages": ["200mg", "400mg", "500mg"], "type": "Antibiotic" },
+  { "id": 18, "name": "Ciprofloxacin", "dosages": ["250mg", "500mg", "750mg"], "type": "Antibiotic" },
+  { "id": 19, "name": "Levothyroxine", "dosages": ["25mcg", "50mcg", "100mcg"], "type": "Thyroid" },
+  { "id": 20, "name": "Vitamin D3", "dosages": ["1000IU", "2000IU", "60000IU"], "type": "Supplement" }
+]

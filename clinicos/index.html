@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClinicOS — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- Mobile header -->
+<div class="mobile-header">
+  <div class="mobile-brand">Clinic<span>OS</span></div>
+  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+</div>
+
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-text">Clinic<span>OS</span></div>
+      <div class="sidebar-logo-tag">Patient Record System</div>
+    </div>
+
+    <div class="sidebar-doctor">
+      <div class="sidebar-doc-name" id="sidebarDoctorName">Dr. —</div>
+      <div class="sidebar-doc-spec" id="sidebarSpeciality">—</div>
+      <div class="sidebar-doc-hospital"><span>🏥</span><span id="sidebarHospital">—</span></div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Overview</div>
+      <a class="nav-link" data-tab="dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+
+      <div class="nav-section-label">Patients</div>
+      <a class="nav-link" data-tab="patients" onclick="renderPatients_init()">
+        <span class="nav-icon">👥</span> All Patients
+      </a>
+      <a class="nav-link" data-tab="register">
+        <span class="nav-icon">➕</span> Register Patient
+      </a>
+
+      <div class="nav-section-label">Visits</div>
+      <a class="nav-link" data-tab="visit">
+        <span class="nav-icon">📋</span> Record Visit
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn-logout" id="logoutBtn">🚪 Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ======================== DASHBOARD ======================== -->
+    <div class="tab-panel" id="tab-dashboard">
+      <div class="page-header">
+        <div>
+          <div class="page-header-title">Dashboard</div>
+          <div class="page-header-sub">Your clinic at a glance</div>
+        </div>
+      </div>
+
+      <div style="padding: 1.75rem 2rem;">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-label">Total Patients</div>
+            <div class="stat-value" id="statTotalPatients">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📋</div>
+            <div class="stat-label">Total Visits</div>
+            <div class="stat-value" id="statTotalVisits">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-label">Visits Today</div>
+            <div class="stat-value" id="statToday">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-label">This Week</div>
+            <div class="stat-value" id="statThisWeek">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🗓️</div>
+            <div class="stat-label">This Month</div>
+            <div class="stat-value" id="statThisMonth">—</div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <div class="dash-card">
+            <div class="dash-card-title">🤒 Top Symptoms This Week</div>
+            <div id="symptomChart"><p class="empty-msg">No data yet.</p></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-title">🕐 Recent Visits</div>
+            <div id="recentFeed"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================== PATIENTS ======================== -->
+    <div class="tab-panel" id="tab-patients">
+      <div class="page-header">
+        <div>
+          <div class="page-header-title">All Patients</div>
+          <div class="page-header-sub">Click any patient to view full visit history</div>
+        </div>
+      </div>
+
+      <div style="padding: 1.75rem 2rem;">
+        <div class="search-bar-wrap">
+          <input class="search-bar" id="patientSearch" type="text" placeholder="Search by name or phone number…" />
+        </div>
+        <div class="patient-grid" id="patientGrid"></div>
+      </div>
+    </div>
+
+    <!-- ======================== REGISTER ======================== -->
+    <div class="tab-panel" id="tab-register">
+      <div class="page-header">
+        <div>
+          <div class="page-header-title">Register New Patient</div>
+          <div class="page-header-sub">Phone number is used as the unique patient ID</div>
+        </div>
+      </div>
+
+      <div style="padding: 1.75rem 2rem;">
+        <form class="form-card" id="registerForm">
+          <div class="form-card-title">➕ Patient Details</div>
+
+          <div class="form-row">
+            <div class="app-form-group">
+              <label for="regName">Full Name *</label>
+              <input type="text" id="regName" placeholder="Patient's full name" />
+            </div>
+            <div class="app-form-group">
+              <label for="regPhone">Mobile Number *</label>
+              <input type="tel" id="regPhone" placeholder="10-digit number" maxlength="10" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="app-form-group">
+              <label for="regAge">Age *</label>
+              <input type="number" id="regAge" placeholder="Age in years" min="0" max="120" />
+            </div>
+            <div class="app-form-group">
+              <label for="regGender">Gender *</label>
+              <select id="regGender">
+                <option value="">Select gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="app-form-group" style="max-width: 200px;">
+            <label for="regBlood">Blood Group *</label>
+            <select id="regBlood">
+              <option value="">Select</option>
+              <option>A+</option><option>A-</option>
+              <option>B+</option><option>B-</option>
+              <option>AB+</option><option>AB-</option>
+              <option>O+</option><option>O-</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit">Register Patient</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ======================== RECORD VISIT ======================== -->
+    <div class="tab-panel" id="tab-visit">
+      <div class="page-header">
+        <div>
+          <div class="page-header-title">Record a Visit</div>
+          <div class="page-header-sub">Search for the patient, fill in today's details, save</div>
+        </div>
+      </div>
+
+      <div style="padding: 1.75rem 2rem; max-width: 820px;">
+        <form id="visitForm">
+
+          <!-- Patient search -->
+          <div class="visit-section">
+            <div class="visit-section-title">👤 Select Patient</div>
+            <div class="search-dropdown-wrap">
+              <input type="text" class="app-form-group" id="visitPatientSearch"
+                style="width:100%; padding:.7rem 1rem; border:1.5px solid var(--border); border-radius:6px; font-size:.93rem; outline:none;"
+                placeholder="Search patient by name or phone…" autocomplete="off" />
+              <div class="search-results-dropdown hidden" id="visitPatientResults"></div>
+            </div>
+            <div id="selectedPatientInfo" class="hidden"></div>
+          </div>
+
+          <!-- Date + Symptoms -->
+          <div class="visit-section">
+            <div class="visit-section-title">📅 Visit Details</div>
+
+            <div class="app-form-group" style="max-width: 200px; margin-bottom: 1.2rem;">
+              <label for="visitDate">Visit Date *</label>
+              <input type="date" id="visitDate" />
+            </div>
+
+            <div class="app-form-group" style="margin-bottom: .6rem;">
+              <label>Symptoms * <span style="font-weight:400; text-transform:none; font-size:.8rem; color:var(--text-muted);">(select all that apply)</span></label>
+              <div class="symptom-chips-wrap" id="symptomChips"></div>
+            </div>
+
+            <div class="app-form-group" style="margin-top: 1rem;">
+              <label for="extraSymptoms">Additional Symptoms (free text)</label>
+              <input type="text" id="extraSymptoms" placeholder="Any other symptoms not listed above…" />
+            </div>
+
+            <div class="app-form-group">
+              <label for="visitDiagnosis">Diagnosis *</label>
+              <input type="text" id="visitDiagnosis" placeholder="e.g. Viral fever, Hypertension follow-up…" />
+            </div>
+
+            <div class="app-form-group">
+              <label for="visitNotes">Doctor's Notes (optional)</label>
+              <textarea id="visitNotes" placeholder="Any additional notes or observations…"></textarea>
+            </div>
+          </div>
+
+          <!-- Prescription -->
+          <div class="visit-section">
+            <div class="visit-section-title">💊 Prescription Builder</div>
+            <div id="prescriptionBuilder"></div>
+          </div>
+
+          <button type="submit" class="btn-submit" style="width:100%; padding:.9rem; font-size:1rem;">
+            ✅ Save Visit Record
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- PATIENT MODAL -->
+<div class="modal-overlay" id="patientModal" onclick="if(event.target===this) closePatientModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-avatar" id="modalAvatar">—</div>
+      <div style="flex:1">
+        <div class="modal-patient-name" id="modalPatientName">—</div>
+        <div class="modal-patient-meta">
+          <span class="modal-meta-pill" id="modalPatientPhone">—</span>
+          <span class="modal-meta-pill" id="modalPatientAge">—</span>
+          <span class="modal-meta-pill" id="modalPatientGender">—</span>
+          <span class="modal-meta-pill" id="modalPatientBlood">—</span>
+        </div>
+      </div>
+      <span class="modal-visit-count" id="modalVisitCount">0 visits</span>
+      <button class="modal-close" onclick="closePatientModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-title">Visit History (newest first)</div>
+      <div class="visit-timeline" id="visitTimeline"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/patients.js"></script>
+<script src="js/visits.js"></script>
+
+<script>
+// Override switchTab to call right inits
+const _origSwitch = switchTab;
+window.switchTab = function(tab) {
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const activeLink = document.querySelector(`.nav-link[data-tab="${tab}"]`);
+  if (activeLink) activeLink.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('tab-' + tab);
+  if (panel) panel.classList.add('active');
+
+  if (tab === 'dashboard') renderDashboard();
+  if (tab === 'patients')  renderPatients_init();
+  if (tab === 'register')  initRegister();
+  if (tab === 'visit')     initVisit();
+};
+</script>
+
+</body>
+</html>
